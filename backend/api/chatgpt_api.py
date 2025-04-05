@@ -9,13 +9,16 @@ chatgpt_bp = Blueprint('chatgpt_bp', __name__)
 def analyze():
     # Use the OpenAI API
     client = OpenAI()
+    user_input = "import yaml\n\n\ndef yaml_load(filename):\n" \
+                "    '''\n    Use the filename variable to open a file, \n     " \
+                "load its contents into a variable with yaml, and return it.\n    " \
+                "'''\n    with open(filename, 'r') as f:\n        " \
+                "data = yaml.load(f, Loader=yaml.BaseLoader)\n        return data"
     try:
         response = client.responses.create(
             model="gpt-4o",
-            instructions="Talk like a kid.",
-            input=[
-                {"role": "user", "content": "Who is Shizo Abe?"}
-            ]
+            instructions="Detect code vulnerability and Fix it. Please state the typle of vulnerability at the beginning of the response.",
+            input = user_input,
         )
         if response.status == 'completed':
             # returned message
