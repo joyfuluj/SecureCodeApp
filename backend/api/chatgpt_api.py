@@ -19,7 +19,7 @@ def analyze():
             model="gpt-4o",
             instructions="Detect code vulnerability and Fix it. Please answer with the json format with" \
                             " \"type\" with type of vulnerability in broad, \"explain\" with explanation of vulnerability,"
-                            " and \"fixed\" with fixed code",
+                            " \"original\" for original code and \"fixed\" with fixed code",
             input = user_input,
         )
         if response.status == 'completed':

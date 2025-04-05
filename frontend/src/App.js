@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [type, setType] = useState('');
   const [explain, setExplain] = useState('');
+  const [original, setOriginal] = useState('');
   const [fixed, setFixed] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,7 @@ function App() {
         if (!signal.aborted) { // Update state if not cancelled
           setType(parsedData.type || '');
           setExplain(parsedData.explain || '');
+          setOriginal(parsedData.original || '');
           setFixed(parsedData.fixed || '');
         }
       } catch (error) {
@@ -75,6 +77,9 @@ function App() {
           
           <h2>Explanation</h2>
           <p>{explain || 'No explanation available'}</p>
+
+          <h2>Original Code</h2>
+          <pre>{original || 'No original code provided'}</pre>
           
           <h2>Fixed Code</h2>
           <pre>{fixed || 'No fix provided'}</pre>
