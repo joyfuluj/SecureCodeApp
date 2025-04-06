@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { highlightCodeText } from '../utils/highlightUtils';
 import './Fix.css';
@@ -10,10 +10,23 @@ const Fix = () => {
     const { keyword_o } = location.state || {};
     const { keyword_f } = location.state || {};
     const navigate = useNavigate()
+    const fixedCodeRef = useRef(null); // Reference to the fixed code block
 
     const handleBackClick = () => {
         navigate('/');
     };
+
+    const handleCopyClick = () => {
+        if (fixedCodeRef.current) {
+            const textToCopy = fixedCodeRef.current.innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Fixed code copied!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    };
+
 
     return (
         <main className="main-content">
@@ -32,10 +45,16 @@ const Fix = () => {
             <section className="fixed-section">
                     <div className="fix-copy">
                         <h2>Fixed code:</h2>
-                        <img src="/copy_icon.png" className="copy_icon" alt="copy the code" />
+                        <img 
+                            src="/copy_icon.png" 
+                            className="copy_icon" 
+                            alt="copy the code"
+                            onClick={handleCopyClick}
+                            style={{ cursor: 'pointer' }}
+                        />
                     </div>
                     <div className="fix-code-block">
-                        <pre>
+                        <pre ref={fixedCodeRef}> // can access the code with "fixedCodeRef.current"
                         <pre>{highlightCodeText(fixed, keyword_f, 'fixed')}</pre>
                         </pre>
                     </div>
