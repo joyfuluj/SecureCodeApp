@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import Analyze from './components/Analyze';
+import Fix from './components/Fix';
 import './App.css';
 
 function App() {
@@ -72,7 +73,8 @@ function App() {
     <div className="App">
       <Header />
       {/* <Main /> */}
-      <Analyze />
+      {/* <Analyze /> */}
+      <Fix />
       {/* {error ? (
         <h1>{error}</h1>
       ) : isLoading ? (

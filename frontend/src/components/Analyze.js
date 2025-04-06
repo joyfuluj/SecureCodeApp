@@ -7,7 +7,6 @@ const Analyze = () => {
         <h1>Code Vulnerability Analyzer</h1>
         
         <div className="sections-container">
-            {/* Code Section - wider */}
             <section className="code-section">
                 <h2>Your code:</h2>
                 <div className="code-block">
@@ -25,7 +24,6 @@ return data`}
                 </div>
             </section>
 
-            {/* Vulnerability Section - thinner */}
             <section className="vulnerability-section">
                 <h3>Vulnerability Type:</h3>
                 <div className="vulnerability-type-box">
@@ -43,7 +41,6 @@ return data`}
             </section>
         </div>
 
-        {/* Action buttons container */}
         <div className="action-buttons">
                 <a href="/" className="back-link">← Back to Home</a>
                 <button className="fix-button">Fix Vulnerability &gt;&gt;</button>
