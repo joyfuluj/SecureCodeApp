@@ -73,8 +73,8 @@ function App() {
     <div className="App">
       <Header />
       {/* <Main /> */}
-      {/* <Analyze /> */}
-      <Fix />
+      <Analyze />
+      {/* <Fix /> */}
       {/* {error ? (
         <h1>{error}</h1>
       ) : isLoading ? (
