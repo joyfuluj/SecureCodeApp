@@ -8,7 +8,8 @@ const Analyze = () => {
     const [type, setType] = useState('');
     const [explain, setExplain] = useState('');
     const [fixed, setFixed] = useState('');
-    const [keyword, setKeyword] = useState('');
+    const [keyword_o, setKeywordO] = useState('');
+    const [keyword_f, setKeywordF] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ const Analyze = () => {
     };
 
     const handleFixClick = () => {
-        navigate('/fix', { state: { codeInput, fixed } });
+        navigate('/fix', { state: { codeInput, fixed, keyword_o, keyword_f } });
     };
     
     
@@ -51,7 +52,8 @@ const Analyze = () => {
             setType(parsedData.type || '');
             setExplain(parsedData.explain || '');
             setFixed(parsedData.fixed || '');
-            setKeyword(parsedData.keyword || '');
+            setKeywordO(parsedData.keyword_o || '');
+            setKeywordF(parsedData.keyword_f || '');
         } catch (error) {
             console.error('Fetch error:', error);
             setError(error.message);
@@ -77,14 +79,16 @@ const highlightCodeText = (text, keyword) => {
 
     return parts.map((part, index) =>
         regex.test(part) ? (
-            <span key={index} style={{ color: 'black', backgroundColor: 'yellow', fontWeight: 'bold' }}>
+            <span key={index} style={{ color: 'black', backgroundColor: 'red', fontWeight: 'bold' }}>
                 {part}
             </span>
         ) : (
             part
         )
     );
+    export default highlightCodeText;
 };
+
 
 
     return (
@@ -96,9 +100,7 @@ const highlightCodeText = (text, keyword) => {
             <section className="code-section">
                 <h2>Your code:</h2>
                 <div className="code-block">
-                    <pre>
-                        <pre>{highlightCodeText(codeInput, keyword)}</pre>
-                    </pre>
+                    <pre>{highlightCodeText(codeInput, keyword_o)}</pre>
                 </div>
             </section>
 

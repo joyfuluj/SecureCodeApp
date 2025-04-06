@@ -6,11 +6,17 @@ const Fix = () => {
     const location = useLocation();
     const { codeInput } = location.state || {};
     const { fixed } = location.state || {};
+    const { keyword_o } = location.state || {};
+    const { keyword_f } = location.state || {};
     const navigate = useNavigate()
 
     const handleBackClick = () => {
         navigate('/');
     };
+
+    
+    const originalFlag = 'original';
+    const fixedFlag = 'fixed';
 
     return (
         <main className="main-content">
@@ -21,7 +27,7 @@ const Fix = () => {
                     <h2>Your code:</h2>
                     <div className="fix-code-block">
                         <pre>
-                            <pre>{codeInput}</pre>
+                            <pre>{highlightCodeText(codeInput, keyword_o, originalFlag)}</pre>
                         </pre>
                     </div>
                 </section>
@@ -33,7 +39,7 @@ const Fix = () => {
                     </div>
                     <div className="fix-code-block">
                         <pre>
-                        <pre>{fixed}</pre>
+                        <pre>{highlightCodeText(fixed, keyword_f, fixedFlag)}</pre>
                         </pre>
                     </div>
             </section>
