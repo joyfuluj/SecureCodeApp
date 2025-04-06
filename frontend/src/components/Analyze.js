@@ -1,5 +1,6 @@
 import React,  { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { highlightCodeText } from '../utils/highlightUtils';
 import './Analyze.css';
 
 const Analyze = () => {
@@ -8,7 +9,8 @@ const Analyze = () => {
     const [type, setType] = useState('');
     const [explain, setExplain] = useState('');
     const [fixed, setFixed] = useState('');
-    const [keyword, setKeyword] = useState('');
+    const [keyword_o, setKeywordO] = useState('');
+    const [keyword_f, setKeywordF] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate()
@@ -19,7 +21,7 @@ const Analyze = () => {
     };
 
     const handleFixClick = () => {
-        navigate('/fix', { state: { codeInput, fixed } });
+        navigate('/fix', { state: { codeInput, fixed, keyword_o, keyword_f } });
     };
     
     
@@ -51,7 +53,8 @@ const Analyze = () => {
             setType(parsedData.type || '');
             setExplain(parsedData.explain || '');
             setFixed(parsedData.fixed || '');
-            setKeyword(parsedData.keyword || '');
+            setKeywordO(parsedData.keyword_o || '');
+            setKeywordF(parsedData.keyword_f || '');
         } catch (error) {
             console.error('Fetch error:', error);
             setError(error.message);
@@ -63,42 +66,16 @@ const Analyze = () => {
     fetchData();
 }, [codeInput]);
 
-const highlightCodeText = (text, keyword) => {
-    if (!keyword || !text) return text;
-
-    const exactPattern = keyword
-        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // put escape mark all regex special chars
-        .replace(/\s+/g, '\\s*');
-    
-    // Create regex
-    const regex = new RegExp(`(${exactPattern})`, 'gi');
-    
-    const parts = text.split(regex);
-
-    return parts.map((part, index) =>
-        regex.test(part) ? (
-            <span key={index} style={{ color: 'black', backgroundColor: 'yellow', fontWeight: 'bold' }}>
-                {part}
-            </span>
-        ) : (
-            part
-        )
-    );
-};
-
-
     return (
         <main className="main-content">
         {isLoading ? (
             <h1>Analyzing...</h1>) : (<>
-        <h1>Code Vulnerability Analyzer</h1>
+        <h1>Code Vulnerability Analysis</h1>
         <div className="sections-container">
             <section className="code-section">
                 <h2>Your code:</h2>
                 <div className="code-block">
-                    <pre>
-                        <pre>{highlightCodeText(codeInput, keyword)}</pre>
-                    </pre>
+                    <pre>{highlightCodeText(codeInput, keyword_o, 'original')}</pre>
                 </div>
             </section>
 

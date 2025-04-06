@@ -29,11 +29,12 @@
     flex-direction: column;
     margin-bottom: 50px;
     height: 460px;
+    width: 250px;
 }
 
 .fix-code-block {
     background-color: #282c34;
-    color: #abb2bf;
+    color: white;
     padding: 20px;
     border-radius: 5px;
     flex-grow: 1;
@@ -69,7 +70,7 @@
 }
 
 .download-button {
-    background-color: #A0F49A;
+    background-color: #9af4d8;
     color: black;
     border: none;
     padding: 10px 15px;
@@ -84,7 +85,7 @@
 }
 
 .download-button:hover {
-    background-color: #7DAF6E;
+    background-color: #8de9d4;
 }
 
 .download_icon {

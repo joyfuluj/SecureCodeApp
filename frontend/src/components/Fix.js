@@ -1,11 +1,14 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { highlightCodeText } from '../utils/highlightUtils';
 import './Fix.css';
 
 const Fix = () => {
     const location = useLocation();
     const { codeInput } = location.state || {};
     const { fixed } = location.state || {};
+    const { keyword_o } = location.state || {};
+    const { keyword_f } = location.state || {};
     const navigate = useNavigate()
 
     const handleBackClick = () => {
@@ -14,14 +17,14 @@ const Fix = () => {
 
     return (
         <main className="main-content">
-        <h1>Code Vulnerability Analyzer</h1>
+        <h1>Secure Code Fix Implemented</h1>
 
         <div className="sections-container">
             <section className="code-section">
                     <h2>Your code:</h2>
                     <div className="fix-code-block">
                         <pre>
-                            <pre>{codeInput}</pre>
+                            <pre>{highlightCodeText(codeInput, keyword_o, 'original')}</pre>
                         </pre>
                     </div>
                 </section>
@@ -33,7 +36,7 @@ const Fix = () => {
                     </div>
                     <div className="fix-code-block">
                         <pre>
-                        <pre>{fixed}</pre>
+                        <pre>{highlightCodeText(fixed, keyword_f, 'fixed')}</pre>
                         </pre>
                     </div>
             </section>
