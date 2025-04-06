@@ -35,10 +35,10 @@
     color: #abb2bf;
     padding: 20px;
     border-radius: 5px;
-    overflow: auto;
     flex-grow: 1;
     font-size: 14px;
     line-height: 1.5;
+    overflow-y: auto;
 }
 
 .code-section h2,

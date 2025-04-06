@@ -41,7 +41,7 @@ return data`}
             </section>
         </div>
 
-        <div className="action-buttons">
+        <div className="actions-container">
                 <a href="/" className="back-link">← Back to Home</a>
                 <button className="fix-button">Fix Vulnerability &gt;&gt;</button>
         </div>
