@@ -1,0 +1,31 @@
+.header {
+background-color: #B671AE;
+padding: 0px;
+}
+
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.nav-links {
+list-style: none;
+}
+
+.nav-links li {
+display: inline-block;
+margin-left: 50px;
+margin-right: 80px;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+}
+
+.logo img {
+    width: 110px;
+    height: 60px;
+    margin-left: 20px;
+  }
