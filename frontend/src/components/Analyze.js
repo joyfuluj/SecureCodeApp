@@ -90,7 +90,12 @@ const Analyze = () => {
                 <h3 className="explanation-title">Explanation:</h3>
                 <div className="explanation-box">
                     <div className="explanation-content">
-                        <p>{explain || 'No explanation available'}</p>
+                        <p>{explain
+                            ? explain.split('. ').filter(Boolean).map((sentence, index) => (
+                                <p key={index}>{sentence.trim()}.</p>
+                                ))
+                            : <p>No explanation available</p>}
+                        </p>
                     </div>
                 </div>
             </section>
