@@ -1,8 +1,10 @@
 import React,  { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Analyze.css';
 
-const Analyze = ({ codeInput }) => {
+const Analyze = () => {
+    const location = useLocation();
+    const { codeInput } = location.state || {};
     const [type, setType] = useState('');
     const [explain, setExplain] = useState('');
     const [original, setOriginal] = useState('');
@@ -22,6 +24,7 @@ const Analyze = ({ codeInput }) => {
     
     
     useEffect(() => {
+        if (!codeInput) return;
         const abortController = new AbortController();
     
         const fetchData = async () => {
@@ -85,7 +88,8 @@ const Analyze = ({ codeInput }) => {
                 <h2>Your code:</h2>
                 <div className="code-block">
                     <pre>
-                        {original || 'No original code provided'}
+                        {/* {original || 'No original code provided'} */}
+                        <pre>{codeInput}</pre>
                     </pre>
                 </div>
             </section>

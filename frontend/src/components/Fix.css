@@ -30,7 +30,7 @@
     margin-bottom: 50px;
 }
 
-.code-block {
+.fix-code-block {
     background-color: #282c34;
     color: #abb2bf;
     padding: 20px;
@@ -39,6 +39,7 @@
     font-size: 14px;
     line-height: 1.5;
     overflow-y: auto;
+    text-align: left;
 }
 
 .code-section h2,

@@ -5,13 +5,13 @@ import Analyze from './Analyze';
 
 const Main = () => {
     const [codeInput, setCodeInput] = useState('');
-    const [triggerAnalyze, setTriggerAnalyze] = useState(false);
     const navigate = useNavigate()
 
     const handleAnalyzeClick = () => {
-        navigate('/analyze');
-        // setTriggerAnalyze(true);
+        // Navigate to the analyze page with the codeInput passed
+        navigate('/analyze', { state: { codeInput } });
     };
+
     return (
         <div className="main">
             <h1 className="heading">Code Vulnerability Analyzer</h1>
@@ -26,9 +26,6 @@ const Main = () => {
                     />            
             </div>
             <button className="analyze-btn" onClick={handleAnalyzeClick}>Analyze</button>
-            {triggerAnalyze && (
-                <Analyze codeInput={codeInput} />
-            )}
         </div>
     );
 }

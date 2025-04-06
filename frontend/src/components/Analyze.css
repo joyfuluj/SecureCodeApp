@@ -37,8 +37,13 @@
     color: #abb2bf;
     padding: 15px;
     border-radius: 5px;
-    overflow-x: auto;
+    overflow-y: auto;
     height: 370px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-align: left;
 }
 
 .vulnerability-section {

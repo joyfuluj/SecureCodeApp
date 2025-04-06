@@ -9,7 +9,7 @@ const Fix = () => {
         <div className="sections-container">
             <section className="code-section">
                     <h2>Your code:</h2>
-                    <div className="code-block">
+                    <div className="fix-code-block">
                         <pre>
                             {`import yaml  
     def yaml.load(filename):  
@@ -31,7 +31,7 @@ const Fix = () => {
                         <h2>Fixed code:</h2>
                         <img src="/copy_icon.png" className="copy_icon" alt="copy the code" />
                     </div>
-                    <div className="code-block">
+                    <div className="fix-code-block">
                         <pre>
                             {`import yaml
     def yaml_load(filename):
