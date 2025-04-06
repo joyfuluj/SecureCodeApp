@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { highlightCodeText } from '../utils/highlightUtils';
 import './Fix.css';
 
 const Fix = () => {
@@ -14,20 +15,16 @@ const Fix = () => {
         navigate('/');
     };
 
-    
-    const originalFlag = 'original';
-    const fixedFlag = 'fixed';
-
     return (
         <main className="main-content">
-        <h1>Code Vulnerability Analyzer</h1>
+        <h1>Secure Code Fix Implemented</h1>
 
         <div className="sections-container">
             <section className="code-section">
                     <h2>Your code:</h2>
                     <div className="fix-code-block">
                         <pre>
-                            <pre>{highlightCodeText(codeInput, keyword_o, originalFlag)}</pre>
+                            <pre>{highlightCodeText(codeInput, keyword_o, 'original')}</pre>
                         </pre>
                     </div>
                 </section>
@@ -39,7 +36,7 @@ const Fix = () => {
                     </div>
                     <div className="fix-code-block">
                         <pre>
-                        <pre>{highlightCodeText(fixed, keyword_f, fixedFlag)}</pre>
+                        <pre>{highlightCodeText(fixed, keyword_f, 'fixed')}</pre>
                         </pre>
                     </div>
             </section>

@@ -29,6 +29,7 @@
     flex-direction: column;
     margin-bottom: 50px;
     height: 460px;
+    width: 250px;
 }
 
 .fix-code-block {

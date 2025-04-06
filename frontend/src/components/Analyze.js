@@ -1,5 +1,6 @@
 import React,  { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { highlightCodeText } from '../utils/highlightUtils';
 import './Analyze.css';
 
 const Analyze = () => {
@@ -65,42 +66,16 @@ const Analyze = () => {
     fetchData();
 }, [codeInput]);
 
-const highlightCodeText = (text, keyword) => {
-    if (!keyword || !text) return text;
-
-    const exactPattern = keyword
-        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // put escape mark all regex special chars
-        .replace(/\s+/g, '\\s*');
-    
-    // Create regex
-    const regex = new RegExp(`(${exactPattern})`, 'gi');
-    
-    const parts = text.split(regex);
-
-    return parts.map((part, index) =>
-        regex.test(part) ? (
-            <span key={index} style={{ color: 'black', backgroundColor: 'red', fontWeight: 'bold' }}>
-                {part}
-            </span>
-        ) : (
-            part
-        )
-    );
-    export default highlightCodeText;
-};
-
-
-
     return (
         <main className="main-content">
         {isLoading ? (
             <h1>Analyzing...</h1>) : (<>
-        <h1>Code Vulnerability Analyzer</h1>
+        <h1>Code Vulnerability Analysis</h1>
         <div className="sections-container">
             <section className="code-section">
                 <h2>Your code:</h2>
                 <div className="code-block">
-                    <pre>{highlightCodeText(codeInput, keyword_o)}</pre>
+                    <pre>{highlightCodeText(codeInput, keyword_o, 'original')}</pre>
                 </div>
             </section>
 
