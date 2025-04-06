@@ -10,7 +10,7 @@ const Fix = () => {
     const { keyword_o } = location.state || {};
     const { keyword_f } = location.state || {};
     const { extension } = location.state || {};
-    const [downloadMsg, setDownloadMsg] = useState('');
+    const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate()
     const fixedCodeRef = useRef(null); // Reference to the fixed code block
 
@@ -21,11 +21,11 @@ const Fix = () => {
     const handleCopyClick = () => {
         if (fixedCodeRef.current) {
             const textToCopy = fixedCodeRef.current.innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('Fixed code copied!');
-            }).catch(err => {
+            navigator.clipboard.writeText(textToCopy).catch(err => {
                 console.error('Failed to copy text: ', err);
             });
+
+            setIsClicked(true);
         }
     };
 
@@ -63,8 +63,8 @@ const Fix = () => {
                     <div className="fix-copy">
                         <h2>Fixed code:</h2>
                         <img 
-                            src="/copy_icon.png" 
-                            className="copy_icon" 
+                            src={isClicked ? "/copied.png" : "/copy_icon.png"}
+                            className={`copy_icon ${isClicked ? 'clicked' : ''}`}
                             alt="copy the code"
                             onClick={handleCopyClick}
                             style={{ cursor: 'pointer' }}
