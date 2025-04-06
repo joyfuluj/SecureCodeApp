@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Main from './components/Main';
 import './App.css';
 
 function App() {
@@ -69,7 +70,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {error ? (
+      <Main />
+      {/* {error ? (
         <h1>{error}</h1>
       ) : isLoading ? (
         <h1>Loading analysis...</h1>
@@ -87,7 +89,7 @@ function App() {
           <h2>Fixed Code</h2>
           <pre>{fixed || 'No fix provided'}</pre>
         </div>
-      )}
+      )} */}
       <Footer />
     </div>
   );
