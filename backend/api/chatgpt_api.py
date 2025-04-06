@@ -24,7 +24,7 @@ def analyze():
                 model="gpt-4o",
                 instructions="Detect code vulnerability and Fix it. Please answer with the json format with" \
                                 " \"type\" with type of vulnerability in broad, \"explain\" with more than 40 words explanation of vulnerability,"
-                                " \"original\" for original code and \"fixed\" with fixed code",
+                                " \"keyword\" with part of the code with culnerability and \"fixed\" with fixed code",
                 input = code_input,
             )
             if response.status == 'completed':

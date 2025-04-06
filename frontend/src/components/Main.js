@@ -4,13 +4,31 @@ import './Main.css';
 import Analyze from './Analyze';
 
 const Main = () => {
-    const [codeInput, setCodeInput] = useState('');
+    const [code, setCodeInput] = useState('');
     const navigate = useNavigate()
 
     const handleAnalyzeClick = () => {
-        // Navigate to the analyze page with the codeInput passed
+        const codeInput = formatCodeSnippet(code);
+        console.log('Formatted Code:', codeInput);
         navigate('/analyze', { state: { codeInput } });
     };
+
+    //format the input code
+    const formatCodeSnippet = (rawText) => {
+        if (!rawText) return '';
+    
+        //Replace "\n" with newlines
+        let formatted = rawText.replace(/\\n/g, '\n');
+    
+        //Replace escape
+        formatted = formatted.replace(/\\\\/g, '\\');
+    
+        //Trim leading or trailing whitespace
+        formatted = formatted.trim();
+    
+        return formatted;
+    };
+    
 
     return (
         <div className="main">
@@ -21,7 +39,7 @@ const Main = () => {
                 <textarea
                     id="code"
                     placeholder="Paste your code here..."
-                    value={codeInput}
+                    value={code}
                     onChange={(e) => setCodeInput(e.target.value)}
                     />            
             </div>
