@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { highlightCodeText } from '../utils/highlightUtils';
 import './Fix.css';
@@ -9,6 +9,8 @@ const Fix = () => {
     const { fixed } = location.state || {};
     const { keyword_o } = location.state || {};
     const { keyword_f } = location.state || {};
+    const { extension } = location.state || {};
+    const [downloadMsg, setDownloadMsg] = useState('');
     const navigate = useNavigate()
     const fixedCodeRef = useRef(null); // Reference to the fixed code block
 
@@ -26,6 +28,21 @@ const Fix = () => {
             });
         }
     };
+
+    const handleDownloadClick = () => {
+        console.log('Download button clicked');
+        console.log('Extension:', extension);
+        const ext = extension || 'txt';
+        const element = document.createElement("a");
+        const file = new Blob([fixed], { type: 'text/plain' });
+        element.href = URL.createObjectURL(file);
+        element.download = `fixed_code${ext}`;
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    };
+    
+    
 
 
     return (
@@ -54,7 +71,8 @@ const Fix = () => {
                         />
                     </div>
                     <div className="fix-code-block">
-                        <pre ref={fixedCodeRef}> // can access the code with "fixedCodeRef.current"
+                    {/*can access the code with "fixedCodeRef.current" */}
+                        <pre ref={fixedCodeRef}>
                         <pre>{highlightCodeText(fixed, keyword_f, 'fixed')}</pre>
                         </pre>
                     </div>
@@ -64,9 +82,9 @@ const Fix = () => {
         <div className="actions-container">
             <a href="/" className="back-link" onClick={handleBackClick}>← Back to Home</a>
             <div className="download-section">
-                <button className="download-button">
-                    <p>Download (python)</p>
-                    <img src="/download_icon.png" className="download_icon" alt="download" />
+                <button className="download-button" onClick={handleDownloadClick}>
+                    <p>Download</p>
+                    <img src="/download_icon.png" className="download_icon" alt="download"/>
                 </button>
             </div>
         </div>

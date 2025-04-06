@@ -11,6 +11,7 @@ const Analyze = () => {
     const [fixed, setFixed] = useState('');
     const [keyword_o, setKeywordO] = useState('');
     const [keyword_f, setKeywordF] = useState('');
+    const [extension, setExtension] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ const Analyze = () => {
     };
 
     const handleFixClick = () => {
-        navigate('/fix', { state: { codeInput, fixed, keyword_o, keyword_f } });
+        navigate('/fix', { state: { codeInput, fixed, keyword_o, keyword_f, extension } });
     };
     
     
@@ -55,6 +56,7 @@ const Analyze = () => {
             setFixed(parsedData.fixed || '');
             setKeywordO(parsedData.keyword_o || '');
             setKeywordF(parsedData.keyword_f || '');
+            setExtension(parsedData.extension || '');
         } catch (error) {
             console.error('Fetch error:', error);
             setError(error.message);
