@@ -17,12 +17,11 @@
     align-items: flex-start;
 }
 
-/* Code section - wider */
 .code-section {
     background-color: #f5f5f5;
     border-radius: 5px;
     padding: 20px;
-    flex: 1.2; /* Slightly more than vulnerability section */
+    flex: 1.2;
     min-width: 0;
     height: 460px;
 }
@@ -41,12 +40,11 @@
     height: 370px;
 }
 
-/* Vulnerability section - thinner */
 .vulnerability-section {
     background-color: #f8f8f8;
     border-radius: 5px;
     padding: 20px;
-    flex: 1; /* Standard flex unit */
+    flex: 1;
     min-width: 0;
   }
 
@@ -84,7 +82,7 @@
 .action-buttons {
     position: absolute;
     right: 40px;
-    bottom: 140px; /* Adjust this to move up/down */
+    bottom: 140px; 
     display: flex;
     gap: 20px;
     align-items: center;
