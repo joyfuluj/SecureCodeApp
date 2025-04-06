@@ -13,6 +13,7 @@ const Analyze = () => {
     const [error, setError] = useState('');
     const [triggerAnalyze, setTriggerAnalyze] = useState(false);
     const navigate = useNavigate()
+    var hasFetched = false;
 
     const handleBackClick = () => {
         navigate('/');
@@ -24,58 +25,44 @@ const Analyze = () => {
     
     
     useEffect(() => {
-        if (!codeInput) return;
-        const abortController = new AbortController();
+    if (!codeInput) return;
+    if(hasFetched) return;
     
-        const fetchData = async () => {
+    const fetchData = async () => {
+        hasFetched = true;
         setIsLoading(true);
         try {
             const response = await fetch('http://127.0.0.1:5000/api/chatgpt/analyze', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ code: codeInput }),
-            signal: abortController.signal,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: codeInput }),
             });
-    
-            if (!response.ok) throw new Error('Network response was not ok');
-    
-            const data = await response.json();
-    
-            let parsedData;
-            if (data.Response) {
-            try {
-                const jsonString = data.Response.replace(/```json|```/g, '').trim();
-                parsedData = JSON.parse(jsonString);
-            } catch (e) {
-                throw new Error('Failed to parse Markdown JSON');
-            }
-            } else {
-            parsedData = data;
-            }
-    
+
+            console.log('Response status:', response.status);  // Log status
+            const text = await response.text();  // Get raw response first
+            console.log('Raw response:', text);  // Debug unexpected responses
+
+            if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
+            const data = JSON.parse(text);  // Parse manually
+            console.log('Parsed data:', data);  // Inspect structure
+
+            // Handle OpenAI's response format
+            let parsedData = data.Response ? JSON.parse(data.Response.replace(/```json|```/g, '')) : data;
             setType(parsedData.type || '');
             setExplain(parsedData.explain || '');
-            setOriginal(parsedData.original || '');
+            setOriginal(parsedData.original || codeInput);  // Fallback to input
             setFixed(parsedData.fixed || '');
-    
         } catch (error) {
-            if (!abortController.signal.aborted) {
-            console.error('Error:', error);
+            console.error('Fetch error:', error);
             setError(error.message);
-            }
         } finally {
-            if (!abortController.signal.aborted) {
             setIsLoading(false);
-            }
         }
-        };
-    
-        fetchData();
-    
-        return () => abortController.abort();
-    }, [codeInput]);
+    };
+
+    fetchData();
+}, [codeInput]);
 
 
     return (

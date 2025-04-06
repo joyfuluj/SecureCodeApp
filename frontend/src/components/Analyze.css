@@ -85,6 +85,9 @@
     max-height: 300px;
     overflow-y: auto;
     height: 250px;
+    font-size: 25px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .actions-container {
