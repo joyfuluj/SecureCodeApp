@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
+import Analyze from './components/Analyze';
 import './App.css';
 
 function App() {
@@ -70,7 +71,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Main />
+      {/* <Main /> */}
+      <Analyze />
       {/* {error ? (
         <h1>{error}</h1>
       ) : isLoading ? (
