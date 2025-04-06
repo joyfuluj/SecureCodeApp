@@ -8,7 +8,7 @@ const Analyze = () => {
     const [type, setType] = useState('');
     const [explain, setExplain] = useState('');
     const [fixed, setFixed] = useState('');
-    const [original, setOriginal] = useState('');
+    const [keyword, setKeyword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate()
@@ -38,19 +38,20 @@ const Analyze = () => {
             });
 
             console.log('Response status:', response.status);
-            const text = await response.text();  // Get raw response first
+            const text = await response.text();  // get raw response first
             console.log('Raw response:', text);
 
             if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
-            const data = JSON.parse(text);  // Parse manually
-            console.log('Parsed data:', data);  // Inspect structure
+            const data = JSON.parse(text);  // parse manually
+            console.log('Parsed data:', data);  // inspect structure
 
             // Handle OpenAI's response format
             let parsedData = data.Response ? JSON.parse(data.Response.replace(/```json|```/g, '')) : data;
             setType(parsedData.type || '');
             setExplain(parsedData.explain || '');
             setFixed(parsedData.fixed || '');
+            setKeyword(parsedData.keyword || '');
         } catch (error) {
             console.error('Fetch error:', error);
             setError(error.message);
@@ -61,6 +62,29 @@ const Analyze = () => {
 
     fetchData();
 }, [codeInput]);
+
+const highlightCodeText = (text, keyword) => {
+    if (!keyword || !text) return text;
+
+    const exactPattern = keyword
+        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // put escape mark all regex special chars
+        .replace(/\s+/g, '\\s*');
+    
+    // Create regex
+    const regex = new RegExp(`(${exactPattern})`, 'gi');
+    
+    const parts = text.split(regex);
+
+    return parts.map((part, index) =>
+        regex.test(part) ? (
+            <span key={index} style={{ color: 'black', backgroundColor: 'yellow', fontWeight: 'bold' }}>
+                {part}
+            </span>
+        ) : (
+            part
+        )
+    );
+};
 
 
     return (
@@ -73,8 +97,7 @@ const Analyze = () => {
                 <h2>Your code:</h2>
                 <div className="code-block">
                     <pre>
-                        {/* {original || 'No original code provided'} */}
-                        <pre>{codeInput}</pre>
+                        <pre>{highlightCodeText(codeInput, keyword)}</pre>
                     </pre>
                 </div>
             </section>
@@ -90,12 +113,11 @@ const Analyze = () => {
                 <h3 className="explanation-title">Explanation:</h3>
                 <div className="explanation-box">
                     <div className="explanation-content">
-                        <p>{explain
+                        {explain
                             ? explain.split('. ').filter(Boolean).map((sentence, index) => (
                                 <p key={index}>{sentence.trim()}.</p>
                                 ))
                             : <p>No explanation available</p>}
-                        </p>
                     </div>
                 </div>
             </section>
