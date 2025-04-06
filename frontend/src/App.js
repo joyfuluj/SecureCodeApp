@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -66,6 +68,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       {error ? (
         <h1>{error}</h1>
       ) : isLoading ? (
@@ -85,6 +88,7 @@ function App() {
           <pre>{fixed || 'No fix provided'}</pre>
         </div>
       )}
+      <Footer />
     </div>
   );
 }
