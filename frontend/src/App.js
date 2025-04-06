@@ -71,8 +71,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Main /> */}
-      <Analyze />
+      <Main />
+      {/* <Analyze /> */}
       {/* {error ? (
         <h1>{error}</h1>
       ) : isLoading ? (

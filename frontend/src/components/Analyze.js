@@ -44,10 +44,10 @@ return data`}
         </div>
 
         {/* Action buttons container */}
-        <div className="action-buttons">
+        {/* <div className="action-buttons"> */}
                 <a href="/" className="back-link">← Back to Home</a>
                 <button className="fix-button">Fix Vulnerability &gt;&gt;</button>
-        </div>
+        {/* </div> */}
         
     </main>
 );}

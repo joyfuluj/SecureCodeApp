@@ -49,6 +49,7 @@ textarea {
     border-radius: 8px;
     resize: none;
     transition: border-color 0.3s ease;
+    overflow-y: auto;
 }
 
 textarea:focus {
