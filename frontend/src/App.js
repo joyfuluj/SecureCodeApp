@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
@@ -73,27 +74,15 @@ function App() {
     <div className="App">
       <Header />
       {/* <Main /> */}
-      <Analyze />
+      {/* <Analyze /> */}
       {/* <Fix /> */}
-      {/* {error ? (
-        <h1>{error}</h1>
-      ) : isLoading ? (
-        <h1>Loading analysis...</h1>
-      ) : (
-        <div>
-          <h2>Vulnerability Type</h2>
-          <p>{type || 'No vulnerability type found'}</p>
-          
-          <h2>Explanation</h2>
-          <p>{explain || 'No explanation available'}</p>
-
-          <h2>Original Code</h2>
-          <pre>{original || 'No original code provided'}</pre>
-          
-          <h2>Fixed Code</h2>
-          <pre>{fixed || 'No fix provided'}</pre>
-        </div>
-      )} */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/analyze" element={<Analyze />} />
+          <Route path="/fix" element={<Fix />} />
+        </Routes>
+      </Router>
       <Footer />
     </div>
   );

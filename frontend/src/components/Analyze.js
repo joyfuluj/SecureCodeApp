@@ -1,4 +1,5 @@
 import React,  { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Analyze.css';
 
 const Analyze = ({ codeInput }) => {
@@ -8,6 +9,17 @@ const Analyze = ({ codeInput }) => {
     const [fixed, setFixed] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const [triggerAnalyze, setTriggerAnalyze] = useState(false);
+    const navigate = useNavigate()
+
+    const handleBackClick = () => {
+        navigate('/');
+    };
+
+    const handleFixClick = () => {
+        navigate('/fix');
+    };
+    
     
     useEffect(() => {
         const abortController = new AbortController();
@@ -96,8 +108,8 @@ const Analyze = ({ codeInput }) => {
         </div>
 
         <div className="actions-container">
-                <a href="/" className="back-link">← Back to Home</a>
-                <button className="fix-button">Fix Vulnerability &gt;&gt;</button>
+                <a href="/" className="back-link" onClick={handleBackClick}>← Back to Home</a>
+                <button className="fix-button" onClick={handleFixClick}>Fix Vulnerability &gt;&gt;</button>
         </div>
         </>
     )}
