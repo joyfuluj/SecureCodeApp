@@ -7,11 +7,10 @@ const Analyze = () => {
     const { codeInput } = location.state || {};
     const [type, setType] = useState('');
     const [explain, setExplain] = useState('');
-    const [original, setOriginal] = useState('');
     const [fixed, setFixed] = useState('');
+    const [original, setOriginal] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const [triggerAnalyze, setTriggerAnalyze] = useState(false);
     const navigate = useNavigate()
     var hasFetched = false;
 
@@ -20,7 +19,7 @@ const Analyze = () => {
     };
 
     const handleFixClick = () => {
-        navigate('/fix');
+        navigate('/fix', { state: { codeInput, fixed } });
     };
     
     
@@ -38,9 +37,9 @@ const Analyze = () => {
                 body: JSON.stringify({ code: codeInput }),
             });
 
-            console.log('Response status:', response.status);  // Log status
+            console.log('Response status:', response.status);
             const text = await response.text();  // Get raw response first
-            console.log('Raw response:', text);  // Debug unexpected responses
+            console.log('Raw response:', text);
 
             if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
@@ -51,7 +50,6 @@ const Analyze = () => {
             let parsedData = data.Response ? JSON.parse(data.Response.replace(/```json|```/g, '')) : data;
             setType(parsedData.type || '');
             setExplain(parsedData.explain || '');
-            setOriginal(parsedData.original || codeInput);  // Fallback to input
             setFixed(parsedData.fixed || '');
         } catch (error) {
             console.error('Fetch error:', error);
