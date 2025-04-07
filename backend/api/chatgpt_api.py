@@ -23,7 +23,8 @@ def analyze():
             response = client.responses.create(
                 model="gpt-4o",
                 instructions="Detect code vulnerability and Fix it. Please answer with the json format with" \
-                                " \"type\" with type of vulnerability in broad, \"explain\" with more than 40 words explanation of vulnerability,"
+                                " \"type\" with type of vulnerability in broad, \"explain_o\" with more than 40 words explanation of vulnerability, " \
+                                "\"explain_f\ with more than 40 words explanation of fixed code and "\
                                 " \"keyword_o\" with part of the code with vulnerability, \"keyword_f\" with part of the code fixed which has been replaced and \"fixed\" with fixed code," \
                                 " \"extension\" with the extension of the file based on the input code.",
                 input = code_input,
