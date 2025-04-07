@@ -15,7 +15,7 @@
   @keyframes l4 {to{transform: rotate(1turn)}}
 
 
-.main-content {
+.main-content-fix {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
