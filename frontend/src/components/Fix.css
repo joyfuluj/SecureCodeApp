@@ -1,3 +1,20 @@
+.analyzing-text{
+    width: 50px;
+    --b: 8px; 
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 1px;
+    background: conic-gradient(#0000 10%,#f03355) content-box;
+    -webkit-mask:
+      repeating-conic-gradient(#0000 0deg,#000 1deg 20deg,#0000 21deg 36deg),
+      radial-gradient(farthest-side,#0000 calc(100% - var(--b) - 1px),#000 calc(100% - var(--b)));
+    -webkit-mask-composite: destination-in;
+            mask-composite: intersect;
+    animation:l4 1s infinite steps(10);
+  }
+  @keyframes l4 {to{transform: rotate(1turn)}}
+
+
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -16,6 +33,7 @@
     display: flex;
     gap: 30px;
     height: 500px;
+    /* overflow-y: auto; */
 }
 
 .code-section,
@@ -49,6 +67,41 @@
     margin-top: 0;
     color: #444;
     text-align: center;
+}
+
+.explanation-section{
+    background-color: #f8f8f8;
+    color: #abb2bf;
+    padding: 15px;
+    border-radius: 5px;
+    height: 50px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
+    height: 120px;
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.explanation-box-fix{
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    color: black;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 25px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+    margin-top: 10px;
 }
 
 .fix-copy {
@@ -113,7 +166,7 @@
     margin: 20px 0;
     padding: 0 130px;
     box-sizing: border-box;
-    bottom: 0px;
+    bottom: 10px;
 }
 
 .back-link {

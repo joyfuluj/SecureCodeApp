@@ -7,7 +7,8 @@ const Analyze = () => {
     const location = useLocation();
     const { codeInput } = location.state || {};
     const [type, setType] = useState('');
-    const [explain, setExplain] = useState('');
+    const [explain_o, setExplainO] = useState('');
+    const [explain_f, setExplainF] = useState('');
     const [fixed, setFixed] = useState('');
     const [keyword_o, setKeywordO] = useState('');
     const [keyword_f, setKeywordF] = useState('');
@@ -22,7 +23,7 @@ const Analyze = () => {
     };
 
     const handleFixClick = () => {
-        navigate('/fix', { state: { codeInput, fixed, keyword_o, keyword_f, extension } });
+        navigate('/fix', { state: { codeInput, fixed, keyword_o, keyword_f, extension, explain_f } });
     };
     
     
@@ -52,7 +53,8 @@ const Analyze = () => {
             // Handle OpenAI's response format
             let parsedData = data.Response ? JSON.parse(data.Response.replace(/```json|```/g, '')) : data;
             setType(parsedData.type || '');
-            setExplain(parsedData.explain || '');
+            setExplainO(parsedData.explain_o || '');
+            setExplainF(parsedData.explain_f || '');
             setFixed(parsedData.fixed || '');
             setKeywordO(parsedData.keyword_o || '');
             setKeywordF(parsedData.keyword_f || '');
@@ -71,7 +73,7 @@ const Analyze = () => {
     return (
         <main className="main-content">
         {isLoading ? (
-            <h1>Analyzing...</h1>) : (<>
+            <h1 className="analyzing-text"></h1>) : (<>
         <h1>Code Vulnerability Analysis</h1>
         <div className="sections-container">
             <section className="code-section">
@@ -92,8 +94,8 @@ const Analyze = () => {
                 <h3 className="explanation-title">Explanation:</h3>
                 <div className="explanation-box">
                     <div className="explanation-content">
-                        {explain
-                            ? explain.split('. ').filter(Boolean).map((sentence, index) => (
+                        {explain_o
+                            ? explain_o.split('. ').filter(Boolean).map((sentence, index) => (
                                 <p key={index}>{sentence.trim()}.</p>
                                 ))
                             : <p>No explanation available</p>}

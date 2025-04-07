@@ -10,6 +10,7 @@ const Fix = () => {
     const { keyword_o } = location.state || {};
     const { keyword_f } = location.state || {};
     const { extension } = location.state || {};
+    const {explain_f} = location.state || {};
     const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate()
     const fixedCodeRef = useRef(null); // Reference to the fixed code block
@@ -77,6 +78,13 @@ const Fix = () => {
                         </pre>
                     </div>
             </section>
+        </div>
+        <div className="explanation-section">
+            <div className="explanation-box-fix">
+                {explain_f
+                    ?<span>{explain_f}</span>
+                    : <span>No explanation available</span>}
+            </div>
         </div>
         
         <div className="actions-container">
