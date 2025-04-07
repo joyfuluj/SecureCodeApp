@@ -11,6 +11,7 @@ align-items: center;
 
 .nav-links {
 list-style: none;
+margin-left: auto;
 }
 
 .nav-links li {
@@ -28,4 +29,11 @@ text-decoration: none;
     width: 110px;
     height: 60px;
     margin-left: 20px;
+  }
+
+  .user_image{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 40px;
   }
