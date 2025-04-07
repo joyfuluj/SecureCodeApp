@@ -73,7 +73,7 @@ const Analyze = () => {
     return (
         <main className="main-content">
         {isLoading ? (
-            <h1>Analyzing...</h1>) : (<>
+            <h1 className="analyzing-text">Analyzing...</h1>) : (<>
         <h1>Code Vulnerability Analysis</h1>
         <div className="sections-container">
             <section className="code-section">
