@@ -71,7 +71,7 @@ const Analyze = () => {
 }, [codeInput]);
 
     return (
-        <main className="main-content">
+        <main className="main-content-analyze">
         {isLoading ? (
             <h1 className="analyzing-text"></h1>) : (<>
         <h1>Code Vulnerability Analysis</h1>

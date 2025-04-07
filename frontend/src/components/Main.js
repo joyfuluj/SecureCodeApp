@@ -8,6 +8,16 @@ const Main = () => {
     const navigate = useNavigate()
 
     const handleAnalyzeClick = () => {
+
+        if (!code || typeof code !== 'string') {
+            alert('\Please paste valid code before analyzing.');
+            return;
+        }
+
+        if (code.length > 10000) {
+            alert('Code input is too large. Please limit your code to 10,000 characters.');
+            return;
+        }
         const codeInput = formatCodeSnippet(code);
         console.log('Formatted Code:', codeInput);
         navigate('/analyze', { state: { codeInput } });

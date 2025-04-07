@@ -47,7 +47,7 @@ const Fix = () => {
 
 
     return (
-        <main className="main-content">
+        <main className="main-content-fix">
         <h1>Secure Code Fix Implemented</h1>
 
         <div className="sections-container">

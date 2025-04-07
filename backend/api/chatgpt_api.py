@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from openai import OpenAI
+import re
 
 
 # Blueprint for chatGPT AI
@@ -10,15 +11,12 @@ def analyze():
     try:
         data = request.get_json()  # Parse JSON body
         code_input = data.get('code')  # Extract 'code' field from the JSON data
-        if not code_input:
-            return jsonify({'error': 'No code input provided'}), 400
+
+        code_input = re.sub(r'[^\x09\x0A\x0D\x20-\x7E]', '', code_input)  # Remove non-printable characters
+        
     # Use the OpenAI API
         client = OpenAI()
-        user_input = "import yaml\n\n\ndef yaml_load(filename):\n" \
-                    "    '''\n    Use the filename variable to open a file, \n     " \
-                    "load its contents into a variable with yaml, and return it.\n    " \
-                    "'''\n    with open(filename, 'r') as f:\n        " \
-                    "data = yaml.load(f, Loader=yaml.BaseLoader)\n        return data"
+
         try:
             response = client.responses.create(
                 model="gpt-4o",
