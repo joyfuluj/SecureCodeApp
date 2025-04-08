@@ -11,6 +11,12 @@ const Main = () => {
     const fileInputRef = useRef(null);
 
     const handleFileChange = (e) => {
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {  // 5MB
+                alert('Please upload a file smaller than 5 MB.');
+                return;
+            }
+        }
         setIsFileUploaded(true);
         const file = e.target.files[0];
         if (file) {
@@ -88,7 +94,7 @@ const Main = () => {
                 <input
                     id="file-upload"
                     type="file"
-                    accept=".txt,.js,.py,.java,.cpp,.html,.css,.php"
+                    accept=".txt,.js,.py,.java,.cpp,.html,.css,.php" // to be updated
                     onChange={handleFileChange}
                     disabled={code !== ''}
                     ref={fileInputRef}
