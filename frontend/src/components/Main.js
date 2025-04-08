@@ -4,13 +4,14 @@ import './Main.css';
 
 const Main = () => {
     const [code, setCodeInput] = useState('');
-    const [fileName, setFileName] = useState('');
     const [fileContent, setFileContent] = useState('');
     const [isFileUploaded, setIsFileUploaded] = useState(false);
     const navigate = useNavigate()
     const fileInputRef = useRef(null);
 
     const handleFileChange = (e) => {
+        const file = e.target.files[0];
+
         if (file) {
             if (file.size > 5 * 1024 * 1024) {  // 5MB
                 alert('Please upload a file smaller than 5 MB.');
@@ -18,12 +19,11 @@ const Main = () => {
             }
         }
         setIsFileUploaded(true);
-        const file = e.target.files[0];
         if (file) {
-            setFileName(file.name);
             const reader = new FileReader();
             reader.onload = () => {
-                const fileContent = reader.result;
+                let fileContent = reader.result;
+                fileContent = fileContent.replace(/[^\x09\x0A\x0D\x20-\x7E]/g, '');
                 setFileContent(fileContent); 
                 setCodeInput(''); 
             };
@@ -33,7 +33,6 @@ const Main = () => {
 
     const handleRemoveFile = () => {
         setIsFileUploaded(false);
-        setFileName(''); 
         setFileContent('');
 
         if (fileInputRef.current) {
@@ -43,12 +42,12 @@ const Main = () => {
 
     const handleAnalyzeClick = () => {
 
-        if (!code || typeof code !== 'string') {
+        if (!code || typeof code !== 'string' || !fileContent || typeof fileContent !== 'string') {
             alert('\Please paste valid code before analyzing.');
             return;
         }
 
-        if (code.length > 10000) {
+        if (code.length > 10000 || fileContent.length > 10000) {
             alert('Code input is too large. Please limit your code to 10,000 characters.');
             return;
         }
