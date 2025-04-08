@@ -1,15 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Main.css';
-import Analyze from './Analyze';
 
 const Main = () => {
     const [code, setCodeInput] = useState('');
+    const [fileContent, setFileContent] = useState('');
+    const [isFileUploaded, setIsFileUploaded] = useState(false);
     const navigate = useNavigate()
+    const fileInputRef = useRef(null);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {  // 5MB
+                alert('Please upload a file smaller than 5 MB.');
+                return;
+            }
+        }
+        setIsFileUploaded(true);
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                let fileContent = reader.result;
+                fileContent = fileContent.replace(/[^\x09\x0A\x0D\x20-\x7E]/g, '');
+                setCodeInput(fileContent); 
+            };
+            reader.readAsText(file);
+        }
+    };
+
+    const handleRemoveFile = () => {
+        setIsFileUploaded(false);
+        setFileContent('');
+        setCodeInput('');
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = ''; // Clear the file input value
+        }
+    };
 
     const handleAnalyzeClick = () => {
 
-        if (!code || typeof code !== 'string') {
+        if (!code || typeof code !== 'string' ) {
             alert('\Please paste valid code before analyzing.');
             return;
         }
@@ -23,7 +56,6 @@ const Main = () => {
         navigate('/analyze', { state: { codeInput } });
     };
 
-    //format the input code
     const formatCodeSnippet = (rawText) => {
         if (!rawText) return '';
     
@@ -51,8 +83,25 @@ const Main = () => {
                     placeholder="Paste your code here..."
                     value={code}
                     onChange={(e) => setCodeInput(e.target.value)}
+                    disabled={isFileUploaded}
+                    aria-label="Code input field"
                     />            
             </div>
+
+            <div className="file-upload-container">
+                <label htmlFor="file-upload" className="file-upload-label">Or upload a file</label>
+                <input
+                    id="file-upload"
+                    type="file"
+                    accept=".txt,.js,.py,.java,.cpp,.html,.css,.php" // to be updated
+                    onChange={handleFileChange}
+                    disabled={code !== ''}
+                    ref={fileInputRef}
+                    aria-label="Upload file"
+                />
+                <button className="remove-file-btn" onClick={handleRemoveFile}>Remove</button>
+            </div>
+
             <button className="analyze-btn" onClick={handleAnalyzeClick}>Analyze</button>
         </div>
     );

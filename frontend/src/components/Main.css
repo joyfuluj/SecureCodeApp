@@ -78,3 +78,15 @@ textarea:focus {
 .analyze-btn:focus {
     outline: none;
 }
+
+.remove-file-btn {
+    border: none;
+    border-bottom: 1px solid #db6934; /* Example: blue bottom border */
+    color: #db5e34; /* Blue color for the text */
+    background: none; /* Remove the default button background */
+    cursor: pointer;
+}
+
+#file-upload{
+    width: 200px;
+}
