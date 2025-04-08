@@ -6,6 +6,9 @@ SecureCodeApp is a secure web-based application designed to help developers writ
 
 You can watch it on [YouTube](https://youtu.be/h61BYydZpZM)
 
+[View the Figma design](https://www.figma.com/design/vHjnsTH7CUt6WNomNj9f5N/SecureCodeApp?node-id=0-1&p=f&t=flLIEdiF10xHGpxK-0)
+
+
 ## Features
 
 - **Real-time Secure Code Analysis**  
