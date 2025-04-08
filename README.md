@@ -2,6 +2,10 @@
 
 SecureCodeApp is a secure web-based application designed to help developers write and review secure code snippets. It features real-time code analysis and collaboration tools to promote best practices in secure software development.
 
+## Demo
+
+You can watch it on [YouTube](https://youtu.be/h61BYydZpZM)
+
 ## Features
 
 - **Real-time Secure Code Analysis**  
@@ -41,7 +45,7 @@ SecureCodeApp is a secure web-based application designed to help developers writ
     - Python → `.py`
     - JavaScript → `.js`
 
-  <img src="https://github.com/user-attachments/assets/2e52de90-7e68-4c25-acf4-e97112be6214" width="630" height="350">
+  <img src="https://github.com/user-attachments/assets/2e52de90-7e68-4c25-acf4-e97112be6214" width="650" height="350">
 
   **Usability Win:** Fast, file-type-aware exporting = less hassle and more productivity.
 
