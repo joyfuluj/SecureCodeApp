@@ -4,28 +4,46 @@ SecureCodeApp is a secure web-based application designed to help developers writ
 
 ## Features
 
-- **Real-time secure code analysis**  
-  Instantly checks code for vulnerabilities and provides smart suggestions to improve security.
-  
+- **Real-time Secure Code Analysis**  
+  Instantly checks your code for vulnerabilities and provides intelligent suggestions to enhance its security posture.
+
+- **Import Feature**  
+  Upload source code files directly from your device. The app supports multiple file formats including `.js`, `.py`, `.cpp`, `.java`, `.html`, `.css`, and `.php`.  
+  Once a file is selected:
+  - It’s automatically **loaded and displayed**
+  - **Formatted for readability**
+  - Instantly sent for **vulnerability analysis**  
+
+  <img src="https://github.com/user-attachments/assets/e39b99ab-7de9-4ecc-a597-a9bb1cdb031c" width="600" height="350">
+
+  **Usability Win:** No need to paste manually — importing is seamless and intuitive.
+
 - **Highlight Vulnerabilities**  
-  Highlights the parts of the code that have potential vulnerabilities, making it easy for developers to identify security risks at a glance.
-  
+  Vulnerabilities are **highlighted directly in your code**, helping you quickly pinpoint issues without digging.
+
   <img src="https://github.com/user-attachments/assets/69c35a7d-e706-49bf-9718-34e50437455d" width="600" height="350">
-  
-- **Diff View**  
-  A side-by-side comparison of the original code and the modified version, clearly showing what has changed to fix vulnerabilities.
-  
+
+  **Usability Win:** Clear visual cues save time and reduce cognitive load.
+
+- **Diff View (Before & After)**  
+  Displays a **side-by-side comparison** between the original and the fixed version of your code, showing exactly what's changed.
+
   <img src="https://github.com/user-attachments/assets/548b5c1f-bf6d-43aa-9a58-3674196862f3" width="600" height="350">
-  
+
+  **Usability Win:** Helps you learn and understand the improvements — not just blindly apply them.
+
 - **Export Features**  
-  Allows users to export the secure code in various formats to share or save for future use.
-  
-  <img src="https://github.com/user-attachments/assets/2e52de90-7e68-4c25-acf4-e97112be6214" width="600" height="350">
-  
-  - **“Copy to Clipboard”**: Copy the cleaned, secure code directly to your clipboard for easy reuse.
-  - **“Download”**: Download the modified code as a file based on the type of code entered. For example:
-    - If Python code is entered, the download will be a `.py` file.
-**This allows developers to download the secured code in the format that suits their project.**
+  Choose how you want to use or share your cleaned-up code with two convenient options:
+
+  - **“Copy to Clipboard”**: Instantly copy the secure version of your code with one click.
+  - **“Download”**: Get the code as a file, automatically matching its original type.  
+    For example:
+    - Python → `.py`
+    - JavaScript → `.js`
+
+  <img src="https://github.com/user-attachments/assets/2e52de90-7e68-4c25-acf4-e97112be6214" width="630" height="350">
+
+  **Usability Win:** Fast, file-type-aware exporting = less hassle and more productivity.
 
 ## Tech Stack
 
