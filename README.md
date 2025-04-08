@@ -131,6 +131,40 @@ The app performs input sanitization to protect against:
 - Unprintable characters that could break display or parsing
 
 
+## Future Implementation
+
+### Finding Multiple Vulnerabilities
+In the future, the system will be enhanced to **find multiple vulnerabilities** in a given block of code. This will allow for more comprehensive analysis and better coverage of potential security issues. The system will be able to detect various types of vulnerabilities, such as:
+
+- SQL Injection
+- Cross-Site Scripting (XSS)
+- Code Injection (e.g., using `eval()`)
+- Command Injection
+- and more...
+
+By analyzing the code for multiple vulnerabilities simultaneously, the system will provide users with a detailed report that includes:
+
+- **Type of Vulnerability**
+- **Line Number** where the vulnerability occurs
+- **Severity Level** (Low, Medium, High)
+- **Description** of the vulnerability
+- **Recommendation** for fixing the vulnerability
+
+### Implementing Database
+The system will also be upgraded to **implement a database** with the following features:
+
+- **User Registration**: Users will be able to create accounts, register, and log in to the application securely. This feature ensures that users' data is stored in the system and provides them with access to personalized features.
+  
+- **Storing Code Analysis History**: Users will be able to **save the history** of their previously analyzed code. The system will store:
+  - The **submitted code** and the **analysis results** (including detected vulnerabilities and recommendations).
+  - A **timestamp** of when the analysis was done.
+  
+
+These features will be integrated with the backend and database to ensure smooth functionality and user experience.
+
+
+
+
 
 
 
