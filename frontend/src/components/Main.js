@@ -24,8 +24,7 @@ const Main = () => {
             reader.onload = () => {
                 let fileContent = reader.result;
                 fileContent = fileContent.replace(/[^\x09\x0A\x0D\x20-\x7E]/g, '');
-                setFileContent(fileContent); 
-                setCodeInput(''); 
+                setCodeInput(fileContent); 
             };
             reader.readAsText(file);
         }
@@ -34,6 +33,7 @@ const Main = () => {
     const handleRemoveFile = () => {
         setIsFileUploaded(false);
         setFileContent('');
+        setCodeInput('');
 
         if (fileInputRef.current) {
             fileInputRef.current.value = ''; // Clear the file input value
@@ -42,12 +42,12 @@ const Main = () => {
 
     const handleAnalyzeClick = () => {
 
-        if (!code || typeof code !== 'string' || !fileContent || typeof fileContent !== 'string') {
+        if (!code || typeof code !== 'string' ) {
             alert('\Please paste valid code before analyzing.');
             return;
         }
 
-        if (code.length > 10000 || fileContent.length > 10000) {
+        if (code.length > 10000) {
             alert('Code input is too large. Please limit your code to 10,000 characters.');
             return;
         }
