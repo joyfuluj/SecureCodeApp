@@ -1,10 +1,13 @@
 from flask import Blueprint, jsonify, request
 from openai import OpenAI
-import re
+from dotenv import load_dotenv
+import re, os
 
 
 # Blueprint for chatGPT AI
 chatgpt_bp = Blueprint('chatgpt_bp', __name__)
+
+load_dotenv()
 
 @chatgpt_bp.route('/analyze', methods=['POST'])
 def analyze():
@@ -15,7 +18,8 @@ def analyze():
         code_input = re.sub(r'[^\x09\x0A\x0D\x20-\x7E]', '', code_input)  # Remove non-printable characters
         
     # Use the OpenAI API
-        client = OpenAI()
+        api_key = os.environ.get("OPENAI_API_KEY")
+        client = OpenAI(api_key=api_key)
 
         try:
             response = client.responses.create(
