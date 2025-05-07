@@ -41,14 +41,14 @@ const Analyze = () => {
                 body: JSON.stringify({ code: codeInput }),
             });
 
-            console.log('Response status:', response.status);
+            // console.log('Response status:', response.status);
             const text = await response.text();  // get raw response first
-            console.log('Raw response:', text);
+            // console.log('Raw response:', text);
 
             if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
             const data = JSON.parse(text);  // parse manually
-            console.log('Parsed data:', data);  // inspect structure
+            // console.log('Parsed data:', data);  // inspect structure
 
             // Handle OpenAI's response format
             let parsedData = data.Response ? JSON.parse(data.Response.replace(/```json|```/g, '')) : data;

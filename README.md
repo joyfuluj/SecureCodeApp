@@ -77,18 +77,23 @@ You can watch it on [YouTube](https://youtu.be/h61BYydZpZM)
 ```bash
 git clone https://github.com/yourusername/SecureCodeApp.git
 cd SecureCodeApp
-```
-
-2. **Backend Setup (Flask)**
-```bash
-cd backend
 python3 -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install -r requirements.txt
-flask run
 ```
 
-4. **Frontend Setup (React)**
+2. **Get API Key from OpenAI(https://platform.openai.com/docs/overview)**
+
+3. **Store API Key in .env file**
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
+4. **Backend Setup (Flask)**
+```bash
+cd backend
+flask run
+```
+5. **Frontend Setup (React)**
 ```bash
 cd frontend
 npm install
